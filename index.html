@@ -54,7 +54,7 @@
   <div class="page-shell">
     <header class="site-header">
       <nav class="header-navbar">
-        <a href="index.html">
+        <a id="logo-popup-trigger" style="cursor:pointer;">
           <img class="header-logo" src="picture_library/logo2.png" alt="Logo">
         </a>
       </nav>
@@ -104,4 +104,64 @@
     </main>
   </div>
 </body>
+</html>
+
+<!-- Popup für Logo2.png -->
+  <div id="logo-popup" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(30,24,40,0.65); justify-content:center; align-items:center;">
+    <div id="logo-popup-inner" style="background:linear-gradient(180deg, rgba(245,249,237,0.94) 0%, rgba(236,228,247,0.9) 100%); border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:40px 32px 40px 32px; max-width:90vw; max-height:98vh; overflow:auto; display:flex; flex-direction:column; align-items:center; position:relative; min-width:320px;">
+      <button id="logo-popup-close" style="position:absolute; top:12px; right:16px; background:none; border:none; font-size:2rem; color:#b59fd7; cursor:pointer;">&times;</button>
+      <div id="popup-texts" style="width:100%; max-width:520px; text-align:center; margin-top:32px;">
+        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:0; transition:opacity 0.7s;">
+          Für den Kunden <a href="https://weingutkafka.com/" target="_blank" rel="noopener" style="color:#8ea76a; font-weight:600; text-decoration:underline;">Weingut Kafka</a> entwickelte die<br> Agentur P & W ein ganzheitliches digitales Markenerlebnis.
+        </p>
+        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
+          Von der visuellen Konzeption über das Webdesign bis hin zur technischen Umsetzung. Die Website verbindet modernes, hochwertiges Design mit emotionalem Storytelling rund um Wein, Genuss und die besondere Atmosphäre des historischen Weinbunkers in Wien.
+        </p>
+        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
+          Ergänzt wurde das Projekt durch performantes Development, responsive Optimierung für alle Endgeräte und eine benutzerfreundliche Präsentation des Angebots.
+        </p>
+        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
+          Hervorzuheben sind die technische Anbindung des Frontend-Online-Shops an den Shopify-Checkout und die entsprechende Einrichtung des Shopify Shops, um ein nahtloses und benutzerfreundliches Einkaufserlebnis vom ersten Eindruck bis zum Kaufabschluss zu schaffen.
+        </p>
+        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
+          Zusätzlich können anhand des Headless-Ansatzes des Shopify-Systems die automatisierte Abwicklung von Bestellungen sowie das Management von Bestandsdaten und Marketingmaßnahmen direkt in Shopify genutzt werden, während die individuell gestaltete und technisch umgesetzte Website als emotionaler und zentraler Anlaufpunkt für die Marke dient.
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const logoTrigger = document.getElementById('logo-popup-trigger');
+    const popup = document.getElementById('logo-popup');
+    const closeBtn = document.getElementById('logo-popup-close');
+    // Animierte Abschnitte anzeigen
+    logoTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      const sections = Array.from(document.querySelectorAll('.popup-section'));
+      let idx = 0;
+      // Alle ausblenden
+      sections.forEach(s => { s.style.opacity = 0; });
+      // Nacheinander einblenden
+      function showNext() {
+        if (idx < sections.length) {
+          sections[idx].style.opacity = 1;
+          idx++;
+          setTimeout(showNext, 900);
+        }
+      }
+      showNext();
+    });
+    function closePopup() {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closePopup);
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) closePopup();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (popup.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) closePopup();
+    });
+  </script>
 </html>
