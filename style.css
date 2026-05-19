@@ -1,3 +1,87 @@
+/* Gemeinsamer Container für beide Logos */
+.logo-container {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+	.page-shell {
+		width: 98%;
+		padding: 12px 0 32px;
+	}
+	.site-header {
+		gap: 12px;
+		padding: 14px 8px;
+	}
+	.hero-section, .services-section, .showcase-section, .contact-section {
+		padding: 24px;
+	}
+}
+
+@media (max-width: 900px) {
+	.site-header {
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+		padding: 10px 4px;
+	}
+	.nav-center {
+		margin-left: 0;
+		gap: 6px;
+	}
+	.nav-center-image, .brand-logo {
+		height: 60px;
+		margin-left: 0;
+		margin-top: 0;
+	}
+	.hero-section {
+		grid-template-columns: 1fr;
+		padding: 18px;
+	}
+}
+
+@media (max-width: 600px) {
+	.site-header {
+		grid-template-columns: 1fr 1fr;
+		gap: 4px;
+		padding: 6px 2px;
+	}
+	.nav-center {
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 4px;
+		margin-left: 0;
+	}
+	.nav-center-image, .brand-logo {
+		height: 38px;
+		max-width: 90px;
+		margin-left: 0;
+		margin-top: 0;
+		display: block;
+	}
+	.brand-block {
+		justify-self: center;
+	}
+	.hero-section, .services-section, .showcase-section, .contact-section {
+		padding: 8px;
+	}
+}
+
+@media (max-width: 400px) {
+	.site-header {
+		grid-template-columns: 1fr 1fr;
+		gap: 2px;
+		padding: 2px 1px;
+	}
+	.nav-center-image, .brand-logo {
+		height: 28px;
+		max-width: 60px;
+	}
+	.hero-section, .services-section, .showcase-section, .contact-section {
+		padding: 2px;
+	}
+}
 /* Zeilenabstand für violett-box */
 .violett-box p, .violett-box a {
 	margin-top: 0.5em;
@@ -74,55 +158,63 @@ a {
 }
 
 .site-header {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
+	display: flex;
 	align-items: center;
-	gap: 24px;
-	padding: 20px 24px;
+	justify-content: flex-end;
+	position: relative;
+	gap: 0;
+	padding: 0 32px;
+	min-height: 104px;
+	height: 104px;
 	border: 1px solid var(--line);
 	border-radius: 24px;
 	background: rgba(247, 250, 241, 0.72);
-	backdrop-filter: blur(16px);
 	box-shadow: var(--shadow);
+	backdrop-filter: blur(16px);
 }
 
-.brand-block {
+
+/* Absolutes Logo am rechten Rand */
+.site-header-logo-absolute {
+	position: absolute;
+	top: 50%;
+	right: 32px;
+	transform: translateY(-50%);
+	height: 74.06px;
+	width: auto;
+	display: block;
+	z-index: 2;
+}
+
+.header-navbar {
 	display: flex;
 	align-items: center;
-	justify-self: end;
+	justify-content: flex-end;
+	width: 100%;
+	height: 100%;
 }
 
-.nav-center {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 10px;
-	flex-wrap: wrap;
-	justify-self: start;
-	margin-left: 300px;
-}
-
-.nav-center-image {
-	display: block;
-	height: 172px;
+.header-logo {
+	height: 55px;
 	width: auto;
-	max-width: 100%;
-	object-fit: contain;
-	margin-left: 80px;
-}
-
-.brand-logo-link {
-	display: inline-flex;
-	align-items: center;
-	width: fit-content;
-}
-
-.brand-logo {
 	display: block;
-	height: 90px;
-	width: auto;
-	object-fit: contain;
-	margin-top: -20px;
+	margin-right: 67px; /* 32px Abstand zum Rand + 35px Abstand zum rechten Logo */
+}
+
+@media (max-width: 700px) {
+	.site-header {
+		height: 72px;
+		min-height: 72px;
+		padding: 0 12px;
+	}
+	.header-logo {
+		height: 32px;
+		margin-right: 47px; /* 12px Abstand zum Rand + 35px Abstand zum rechten Logo */
+	}
+	.site-header-logo-absolute {
+		height: 42.32px;
+		right: 12px;
+	}
 }
 
 .section-label,
@@ -506,157 +598,3 @@ main {
 	}
 }
 
-@media (max-width: 640px) {
-	.page-shell {
-		width: min(100% - 20px, 1180px);
-		padding-top: 12px;
-	}
-
-	.site-header {
-		grid-template-columns: minmax(0, 1fr) auto;
-		grid-template-areas: "nav logo";
-		justify-items: stretch;
-		align-items: center;
-		gap: 12px;
-		padding: 18px;
-	}
-
-	.brand-block {
-		grid-area: logo;
-		justify-self: end;
-	}
-
-	.nav-center {
-		grid-area: nav;
-		min-width: 0;
-		width: 100%;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		gap: 4px;
-	}
-
-	.nav-center-image {
-		height: auto;
-		max-width: 100%;
-	}
-
-	.site-nav {
-		display: none;
-	}
-
-	.brand-logo {
-		height: 46px;
-	}
-
-	.hero-text {
-		font-size: 1rem;
-	}
-
-	.button {
-		width: 100%;
-	}
-}
-
-@media (max-width: 640px) {
-	.page-shell {
-		width: min(100% - 20px, 1180px);
-		padding-top: 12px;
-	}
-
-	.site-header {
-		grid-template-columns: minmax(0, 1fr) auto;
-		grid-template-areas: "nav logo";
-		justify-items: stretch;
-		align-items: center;
-		gap: 12px;
-		padding: 18px;
-	}
-
-	.brand-block {
-		grid-area: logo;
-		justify-self: end;
-	}
-
-	.nav-center {
-		grid-area: nav;
-		min-width: 0;
-		width: 100%;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		gap: 4px;
-	}
-
-	.nav-center-image {
-		height: auto;
-		max-width: 100%;
-	}
-
-	.site-nav {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		width: 100%;
-		background: none;
-		box-shadow: none;
-		padding: 0;
-		margin: 0;
-		align-items: flex-start;
-	}
-
-	.brand-logo {
-		height: 46px;
-	}
-
-	.hero-text {
-		font-size: 1rem;
-	}
-
-	.button {
-		width: 100%;
-	}
-}
-/* Spezielle Anpassungen für sehr kleine Bildschirme (z.B. iPhone SE 2) */
-@media (max-width: 400px) {
-  .hero-section,
-	.contact-section,
-	.legal-section {
-    grid-template-columns: 1fr !important;
-    padding: 16px 4px !important;
-    gap: 12px !important;
-  }
-  .hero-panel,
-  .contact-card {
-    padding: 12px !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100vw !important;
-    box-sizing: border-box;
-    margin: 0 auto 8px auto;
-  }
-  .contact-card {
-    position: static !important;
-    transform: none !important;
-    right: auto !important;
-    bottom: auto !important;
-    justify-self: stretch !important;
-    align-self: stretch !important;
-  }
-  .contact-section {
-    align-items: stretch !important;
-  }
-  .hero-copy h1,
-  .contact-copy h2 {
-    font-size: 1.4rem !important;
-    max-width: 100% !important;
-    word-break: break-word;
-  }
-  .nav-center {
-    margin-left: 0 !important;
-  }
-  .nav-center-image {
-    margin-left: 0 !important;
-    height: 60px !important;
-  }
-}
