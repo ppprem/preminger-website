@@ -34,6 +34,105 @@
       "description": "Werbeagentur in Wien mit Fokus auf Webdesign, Webentwicklung und Online-Marketing."
     }
   </script>
+
+
+  <!-- Projekt-Galerie Overlay -->
+  <div id="projekt-galerie" style="display:none; position:fixed; z-index:10000; left:0; top:0; width:100vw; height:100vh; background:rgba(30,24,40,0.7); justify-content:center; align-items:center;">
+    <div id="projekt-galerie-inner" style="background:linear-gradient(180deg, rgba(245,249,237,0.97) 0%, rgba(236,228,247,0.97) 100%); border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:40px 32px; max-width:90vw; max-height:98vh; overflow:auto; display:flex; flex-direction:column; align-items:center; position:relative; min-width:320px;">
+      <button id="projekt-galerie-close" style="position:absolute; top:12px; right:16px; background:none; border:none; font-size:2rem; color:#b59fd7; cursor:pointer;">&times;</button>
+      <div id="projekt-galerie-content" style="width:100%; max-width:520px; text-align:center; margin-top:32px;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center; width:100%; max-width:320px; margin-top:32px;">
+        <button id="projekt-galerie-prev" style="background:#e6e0f5; border:none; border-radius:8px; padding:8px 18px; font-size:1rem; color:#6c5b7b; cursor:pointer;">Zurück</button>
+        <span id="projekt-galerie-progress" style="font-size:1rem; color:#6c5b7b;"></span>
+        <button id="projekt-galerie-next" style="background:#e6e0f5; border:none; border-radius:8px; padding:8px 18px; font-size:1rem; color:#6c5b7b; cursor:pointer;">Weiter</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Projekt-Galerie Inhalte (beliebig erweiterbar)
+  const projektGalerieData = [
+    {
+      title: "Projekt 2026: Weingut Kafka",
+      html: `<p>Für den Kunden <a href="https://weingutkafka.com/" target="_blank" rel="noopener" style="color:#8ea76a; font-weight:600; text-decoration:underline;">Weingut Kafka</a> entwickelte die Agentur P & W 
+        ein ganzheitliches digitales Markenerlebnis, von der visuellen Konzeption über das Webdesign bis hin zur technischen Umsetzung.<br> 
+        Ergänzt wurde das Projekt durch performantes Development, responsive Optimierung für alle Endgeräte und eine benutzerfreundliche Präsentation 
+        des Angebots.<br> Hervorzuheben sind weiters die technische Anbindung des Frontend-Online-Shops 
+        an den Shopify-Checkout und die entsprechende Einrichtung des Shopify Shops, um ein nahtloses und benutzerfreundliches Einkaufserlebnis 
+        vom ersten Eindruck bis zum Kaufabschluss zu schaffen.<br> Zusätzlich können anhand des Headless-Ansatzes des Shopify-Systems die 
+        automatisierte Abwicklung von Bestellungen sowie das Management von Bestandsdaten und Marketingmaßnahmen direkt in Shopify genutzt werden, 
+        während die individuell gestaltete und technisch umgesetzte Website als emotionaler und zentraler Anlaufpunkt für die Marke dient.</p>
+      <img src="picture_library/logo2.png" alt="Projektbild" style="max-width:220px; margin:24px auto; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      <p>Für die neue Website des Kunden verbindet die Angentur P & W hochwertiges Design mit emotionalem Storytelling rund um Wein, Genuss und die besondere Atmosphäre des historischen 
+        Weinbunkers im Wiener Zentrum.</p>`
+    },
+    {
+      title: "Projekt 2026: Psychtherapiepraxis<br> Mag.ª Silvia Christine Bors",
+      html: `<p>Für die Psychtherapiepraxis <a href="https://www.stsc.at/" target="_blank" rel="noopener" style="color:#8ea76a; font-weight:600; text-decoration:underline;">STSC.at</a> entwickelte die Agentur P & W ein modernes, klar strukturiertes Webdesign mit hoher visueller Prägnanz.<br>
+        Neben der konzeptionellen Gestaltung und der inhaltlichen Aufbereitung stand vor allem die technische Umsetzung im Fokus: performantes Development, responsive Optimierung für alle Endgeräte sowie eine benutzerfreundliche Präsentation komplexer psychotherapeutischer Angebote.<br>
+        Durch den individuell gestalteten Webauftritt, auf der Basis des für die Psychotherapiepraxis entwickelten Brandings, werden die vertrauensbildende therapeutische Kompetenz und die professionelle Expertise digital erlebbar.<br>
+        Hervorzuheben ist weiters die Betreuung eines fachspezifischen Blogs durch die Agentur, mit illustrierten Blogbeiträgen, die von der Website-Inhaberin regelmäßig gepostet werden.</p>
+        <img src="picture_library/logo2.png" alt="Projektbild" style="max-width:220px; margin:24px auto; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+        <p>Die Agentur P & W gestaltete für die Psychotherapiepraxis eine moderne Website mit prägnanter visueller Sprache und intuitiver Nutzerführung.</p>`
+    },
+    // Weitere Projekte können hier ergänzt werden
+  ];
+
+  let projektGalerieIndex = 0;
+  const projektGalerie = document.getElementById('projekt-galerie');
+  const projektGalerieContent = document.getElementById('projekt-galerie-content');
+  const projektGalerieClose = document.getElementById('projekt-galerie-close');
+  const projektGaleriePrev = document.getElementById('projekt-galerie-prev');
+  const projektGalerieNext = document.getElementById('projekt-galerie-next');
+  const projektGalerieProgress = document.getElementById('projekt-galerie-progress');
+
+  function showProjektGalerie(idx) {
+    projektGalerieIndex = idx;
+    const data = projektGalerieData[projektGalerieIndex];
+    projektGalerieContent.innerHTML = `<h2 style=\"color:#6c5b7b; margin-bottom:18px;\">${data.title}</h2>${data.html}`;
+    projektGalerieProgress.textContent = `Projekt ${projektGalerieIndex + 1} von ${projektGalerieData.length}`;
+    projektGaleriePrev.disabled = projektGalerieIndex === 0;
+    projektGalerieNext.disabled = projektGalerieIndex === projektGalerieData.length - 1;
+  }
+
+  function openProjektGalerie(startIdx = 0) {
+    projektGalerie.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showProjektGalerie(startIdx);
+  }
+  function closeProjektGalerie() {
+    projektGalerie.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  projektGalerieClose.addEventListener('click', closeProjektGalerie);
+  projektGaleriePrev.addEventListener('click', () => {
+    if (projektGalerieIndex > 0) showProjektGalerie(projektGalerieIndex - 1);
+  });
+  projektGalerieNext.addEventListener('click', () => {
+    if (projektGalerieIndex < projektGalerieData.length - 1) showProjektGalerie(projektGalerieIndex + 1);
+  });
+  projektGalerie.addEventListener('click', function(e) {
+    if (e.target === projektGalerie) closeProjektGalerie();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (projektGalerie.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) closeProjektGalerie();
+  });
+
+  // Navigationsbutton in .site-header am linken Rand einfügen
+  window.addEventListener('DOMContentLoaded', function() {
+    const navBtn = document.createElement('button');
+    navBtn.textContent = 'Projekt-Galerie';
+    navBtn.style.whiteSpace = 'nowrap';
+    navBtn.setAttribute('aria-label', 'Projekt-Galerie öffnen');
+    navBtn.classList.add('projekt-galerie-btn');
+    navBtn.onclick = () => openProjektGalerie(0);
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+      siteHeader.insertBefore(navBtn, siteHeader.firstChild);
+    }
+  });
+  </script>
   
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link rel="preload" as="style" href="https://fonts.bunny.net/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
@@ -54,9 +153,7 @@
   <div class="page-shell">
     <header class="site-header">
       <nav class="header-navbar">
-        <a id="logo-popup-trigger" style="cursor:pointer;">
-          <img class="header-logo" src="picture_library/logo2.png" alt="Logo">
-        </a>
+        <img class="header-logo" src="picture_library/logo2.png" alt="Logo">
       </nav>
       <img class="site-header-logo-absolute" src="picture_library/PW_logo_klein_1c.gif" alt="P und W Logo">
     </header>
@@ -106,60 +203,4 @@
 </body>
 </html>
 
-<!-- Popup für Logo2.png -->
-  <div id="logo-popup" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(30,24,40,0.65); justify-content:center; align-items:center;">
-    <div id="logo-popup-inner" style="background:linear-gradient(180deg, rgba(245,249,237,0.94) 0%, rgba(236,228,247,0.9) 100%); border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:40px 32px 40px 32px; max-width:90vw; max-height:98vh; overflow:auto; display:flex; flex-direction:column; align-items:center; position:relative; min-width:320px;">
-      <button id="logo-popup-close" style="position:absolute; top:12px; right:16px; background:none; border:none; font-size:2rem; color:#b59fd7; cursor:pointer;">&times;</button>
-      <div id="popup-texts" style="width:100%; max-width:520px; text-align:center; margin-top:32px;">
-        <von class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:0; transition:opacity 0.7s;">
-          Für den Kunden <a href="https://weingutkafka.com/" target="_blank" rel="noopener" style="color:#8ea76a; font-weight:600; text-decoration:underline;">Weingut Kafka</a> entwickelte die<br> Agentur P & W ein ganzheitliches digitales Markenerlebnis, 
-          von der visuellen Konzeption über das Webdesign bis hin zur technischen Umsetzung. Die Website verbindet modernes, hochwertiges Design mit emotionalem Storytelling rund um Wein, Genuss und die besondere Atmosphäre des historischen Weinbunkers in Wien.
-        </p>
-        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
-          Ergänzt wurde das Projekt durch performantes Development, responsive Optimierung für alle Endgeräte und eine benutzerfreundliche Präsentation des Angebots.
-        </p>
-        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
-          Hervorzuheben sind die technische Anbindung des Frontend-Online-Shops an den Shopify-Checkout und die entsprechende Einrichtung des Shopify Shops, um ein nahtloses und benutzerfreundliches Einkaufserlebnis vom ersten Eindruck bis zum Kaufabschluss zu schaffen.
-        </p>
-        <p class="popup-section" style="font-size:1.13rem; line-height:1.7; color:#1a1712; opacity:0; margin-bottom:0; margin-top:24px; transition:opacity 0.7s;">
-          Zusätzlich können anhand des Headless-Ansatzes des Shopify-Systems die automatisierte Abwicklung von Bestellungen sowie das Management von Bestandsdaten und Marketingmaßnahmen direkt in Shopify genutzt werden, während die individuell gestaltete und technisch umgesetzte Website als emotionaler und zentraler Anlaufpunkt für die Marke dient.
-        </p>
-      </div>
-    </div>
-  </div>
-  <script>
-    const logoTrigger = document.getElementById('logo-popup-trigger');
-    const popup = document.getElementById('logo-popup');
-    const closeBtn = document.getElementById('logo-popup-close');
-    // Animierte Abschnitte anzeigen
-    logoTrigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      const sections = Array.from(document.querySelectorAll('.popup-section'));
-      let idx = 0;
-      // Alle ausblenden
-      sections.forEach(s => { s.style.opacity = 0; });
-      // Nacheinander einblenden
-      function showNext() {
-        if (idx < sections.length) {
-          sections[idx].style.opacity = 1;
-          idx++;
-          setTimeout(showNext, 900);
-        }
-      }
-      showNext();
-    });
-    function closePopup() {
-      popup.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    closeBtn.addEventListener('click', closePopup);
-    popup.addEventListener('click', function(e) {
-      if (e.target === popup) closePopup();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (popup.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) closePopup();
-    });
-  </script>
 </html>
