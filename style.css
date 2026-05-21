@@ -12,7 +12,7 @@
 	}
 	.site-header {
 		gap: 12px;
-		padding: 14px 8px;
+		padding: 0 16px;
 	}
 	.hero-section, .services-section, .showcase-section, .contact-section {
 		padding: 24px;
@@ -21,9 +21,8 @@
 
 @media (max-width: 900px) {
 	.site-header {
-		grid-template-columns: 1fr 1fr;
-		gap: 8px;
-		padding: 10px 4px;
+		gap: 10px;
+		padding: 0 12px;
 	}
 	.nav-center {
 		margin-left: 0;
@@ -42,9 +41,8 @@
 
 @media (max-width: 600px) {
 	.site-header {
-		grid-template-columns: 1fr 1fr;
-		gap: 4px;
-		padding: 6px 2px;
+		gap: 8px;
+		padding: 10px 12px;
 	}
 	.nav-center {
 		flex-direction: row;
@@ -70,9 +68,8 @@
 
 @media (max-width: 400px) {
 	.site-header {
-		grid-template-columns: 1fr 1fr;
-		gap: 2px;
-		padding: 2px 1px;
+		gap: 6px;
+		padding: 8px 10px;
 	}
 	.nav-center-image, .brand-logo {
 		height: 28px;
@@ -158,12 +155,12 @@ a {
 }
 
 .site-header {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
 	align-items: center;
-	justify-content: flex-end;
 	position: relative;
-	gap: 0;
-	padding: 0 32px;
+	gap: 16px;
+	padding: 0 24px;
 	min-height: 104px;
 	height: 104px;
 	border: 1px solid var(--line);
@@ -176,9 +173,8 @@ a {
 /* Projekt-Galerie Navigationsbutton links in der Header-Leiste */
 
 .site-header > .projekt-galerie-btn {
-	margin-left: 0;
-	margin-right: auto;
-	order: -1;
+	justify-self: start;
+	align-self: center;
 	background: linear-gradient(135deg, #b59fd7 0%, #c1d79f 100%);
 	color: #fffaf2;
 	border: none;
@@ -201,22 +197,24 @@ a {
 }
 
 @media (max-width: 700px) {
-	.site-header > button[aria-label="Projekt-Galerie öffnen"] {
-		padding: 8px 16px;
-		font-size: 0.98rem;
-		border-radius: 8px;
+	.site-header > .projekt-galerie-btn {
+		padding: 3px 9px;
+		font-size: 0.82rem;
+		border-radius: 7px;
+		height: 1.8rem;
 	}
 }
 
 
-/* Absolutes Logo am rechten Rand */
+/* Rechtes Logo als reguläres Grid-Element */
 .site-header-logo-absolute {
-	position: absolute;
-	top: 50%;
-	right: 32px;
-	transform: translateY(-50%);
-	height: 74.06px;
+	position: static;
+	transform: none;
+	justify-self: end;
+	align-self: center;
+	height: clamp(34px, 6vw, 74.06px);
 	width: auto;
+	max-width: 100%;
 	display: block;
 	z-index: 2;
 }
@@ -224,31 +222,82 @@ a {
 .header-navbar {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	width: 100%;
-	height: 100%;
+	justify-content: center;
+	justify-self: center;
+	width: auto;
+	height: auto;
+	min-width: 0;
 }
 
 .header-logo {
-	height: 55px;
+	height: clamp(30px, 5vw, 55px);
 	width: auto;
+	max-width: 100%;
 	display: block;
-	margin-right: 67px; /* 32px Abstand zum Rand + 35px Abstand zum rechten Logo */
+	margin-right: 0;
 }
 
 @media (max-width: 700px) {
 	.site-header {
-		height: 72px;
+		grid-template-columns: auto 1fr auto;
+		height: auto;
 		min-height: 72px;
 		padding: 0 12px;
 	}
 	.header-logo {
 		height: 32px;
-		margin-right: 47px; /* 12px Abstand zum Rand + 35px Abstand zum rechten Logo */
 	}
 	.site-header-logo-absolute {
 		height: 42.32px;
-		right: 12px;
+	}
+}
+
+@media (max-width: 600px) {
+	.site-header {
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			"button rightlogo"
+			"center center";
+		row-gap: 8px;
+		column-gap: 10px;
+		height: auto;
+		min-height: unset;
+	}
+
+	.site-header > .projekt-galerie-btn {
+		grid-area: button;
+		justify-self: start;
+	}
+
+	.header-navbar {
+		grid-area: center;
+		justify-self: center;
+	}
+
+	.site-header-logo-absolute {
+		grid-area: rightlogo;
+		justify-self: end;
+		height: 36px;
+	}
+
+	.header-logo {
+		height: 28px;
+	}
+}
+
+@media (max-width: 400px) {
+	.site-header > .projekt-galerie-btn {
+		padding: 2px 8px;
+		font-size: 0.76rem;
+		height: 1.65rem;
+	}
+
+	.header-logo {
+		height: 24px;
+	}
+
+	.site-header-logo-absolute {
+		height: 30px;
 	}
 }
 
@@ -592,7 +641,6 @@ main {
 }
 
 @media (max-width: 920px) {
-	.site-header,
 	.hero-section,
 	.contact-section,
 	.service-grid,
