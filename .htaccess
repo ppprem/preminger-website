@@ -1,11 +1,20 @@
 AddDefaultCharset UTF-8
-Redirect 301 /alte-seite.html https://www.preminger.at/
+Redirect 301 /alte-seite.html https://preminger.at/
 RewriteEngine On
+
+# serve canonical favicon path for crawlers
+RewriteRule ^favicon\.ico$ https://preminger.at/picture_library/Google.png [R=301,L]
+
+# redirect preminger.biz to preminger.at
+RewriteCond %{HTTP_HOST} ^(www\.)?preminger\.biz$ [NC]
+RewriteRule ^ https://preminger.at%{REQUEST_URI} [R=301,L]
+
+# redirect www.preminger.at to non-www canonical host
+RewriteCond %{HTTP_HOST} ^www\.preminger\.at$ [NC]
+RewriteRule ^ https://preminger.at%{REQUEST_URI} [R=301,L]
+
 RewriteCond %{REQUEST_URI} ^\/index\.html$
-RewriteRule .* https://www.preminger.at/ [R=302,L]
-# ensure www.
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule .* https://preminger.at/ [R=301,L]
 # ensure https
 RewriteCond %{HTTP:X-Forwarded-Proto} !https 
 RewriteCond %{HTTPS} off
