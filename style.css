@@ -223,10 +223,19 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 14px;
 	justify-self: center;
 	width: auto;
 	height: auto;
 	min-width: 0;
+}
+
+.header-mark {
+	height: clamp(38px, 5vw, 60px);
+	width: auto;
+	border-radius: 14px;
+	display: block;
+	box-shadow: 0 10px 20px rgba(26, 23, 18, 0.12);
 }
 
 .header-logo {
@@ -246,6 +255,9 @@ a {
 	}
 	.header-logo {
 		height: 32px;
+	}
+	.header-mark {
+		height: 40px;
 	}
 	.site-header-logo-absolute {
 		height: 42.32px;
@@ -283,6 +295,9 @@ a {
 	.header-logo {
 		height: 28px;
 	}
+	.header-mark {
+		height: 34px;
+	}
 }
 
 @media (max-width: 400px) {
@@ -294,6 +309,10 @@ a {
 
 	.header-logo {
 		height: 24px;
+	}
+	.header-mark {
+		height: 28px;
+		border-radius: 10px;
 	}
 
 	.site-header-logo-absolute {
