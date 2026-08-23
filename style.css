@@ -360,19 +360,14 @@ main {
 	overflow: hidden;
 }
 
-.hero-copy h1,
 .section-heading h2,
+.hero-copy h2,
 .contact-copy h2 {
 	margin: 0;
 	font-family: "Playfair Display", Georgia, serif;
 	font-weight: 700;
 	line-height: 1.02;
 	letter-spacing: -0.03em;
-}
-
-.hero-copy h1 {
-	max-width: 10ch;
-	font-size: clamp(2.72rem, 6.1vw, 5rem);
 }
 
 .hero-copy-legal h1 {
@@ -486,10 +481,25 @@ main {
 	font-size: clamp(2rem, 5vw, 3.4rem);
 }
 
+.hero-copy h2,
 .contact-copy h2 {
 	max-width: 16ch;
 	font-size: clamp(2.32rem, 5.3vw, 4.1rem);
 }
+
+.hero-copy h1 {
+	margin: 0;
+	font-size: 1.265rem;
+	line-height: 1;
+	color: #c0d2a4;
+}
+
+.hero-copy {
+	display: grid;
+	align-content: start;
+	gap: 45px;
+}
+
 
 .service-grid,
 .showcase-grid {
@@ -680,7 +690,7 @@ main {
 
 	.section-heading h2,
 	.contact-copy h2,
-	.hero-copy h1 {
+	.hero-copy h2 {
 		max-width: none;
 	}
 }
