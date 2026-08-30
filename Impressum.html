@@ -21,12 +21,19 @@
   <meta name="twitter:title" content="Impressum | Werbeagentur Wien | Webdesign & Development | Preminger">
   <meta name="twitter:description" content="Preminger Werbeagentur in Wien – Ihr Partner für Webdesign, Webentwicklung und Online-Marketing. Jetzt informieren!">
   <meta name="twitter:image" content="https://preminger.at/picture_library/Google.png">
-  <script type="application/ld+json">
+  
+ <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Preminger Werbeagentur Wien",
-      "image": "https://preminger.at/picture_library/Google.png",
+      "@type": ["AdvertisingAgency", "LocalBusiness"],
+      "@id": "https://preminger.at/#agency",
+      "name": "Werbeagentur Preminger – P&W",
+      "url": "https://preminger.at/",
+      "telephone": "+43-699-15424355",
+      "email": "p.preminger@preminger.at",
+      "logo": "https://preminger.at/picture_library/Google.png",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Köstlergasse 6-8/2/22",
@@ -34,12 +41,28 @@
         "postalCode": "1060",
         "addressCountry": "AT"
       },
-      "telephone": "+43 699 15424355",
-      "email": "p.preminger@preminger.at",
-      "url": "https://preminger.at",
-      "description": "Werbeagentur in Wien mit Fokus auf Branding, Webdesign, Webdevelopment und Kampagnen."
+      "areaServed": {
+        "@type": "City",
+        "name": "Wien"
+      },
+      "availableLanguage": [
+        "de"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://preminger.at/#website",
+      "url": "https://preminger.at/",
+      "name": "Preminger – P&W – Werbeagentur Wien",
+      "inLanguage": "de-AT",
+      "publisher": {
+        "@id": "https://preminger.at/#agency"
+      }
     }
-  </script>
+  ]
+}
+</script>
+
 
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
