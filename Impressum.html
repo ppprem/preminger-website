@@ -22,18 +22,24 @@
    <meta name="twitter:description" content="Werbeagentur Preminger – P&W in Wien – Ihre Agentur für Webdesign, Webdevelopment und Online-Marketing. Jetzt informieren!">
    <meta name="twitter:image" content="https://preminger.at/picture_library/Google.png">
   
- <script type="application/ld+json">
+ 
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["AdvertisingAgency", "LocalBusiness"],
+      "@type": "AdvertisingAgency",
       "@id": "https://preminger.at/#agency",
       "name": "Werbeagentur Preminger – P&W",
       "url": "https://preminger.at/",
+      "description": "Werbeagentur in Wien für Branding, Kampagnen, Webdesign und Webdevelopment.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://preminger.at/picture_library/Google.png"
+      },
+      "image": "https://preminger.at/picture_library/Google.png",
       "telephone": "+43-699-15424355",
       "email": "p.preminger@preminger.at",
-      "logo": "https://preminger.at/picture_library/Google.png",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Köstlergasse 6-8/2/22",
@@ -41,20 +47,104 @@
         "postalCode": "1060",
         "addressCountry": "AT"
       },
-      "areaServed": {
-        "@type": "City",
-        "name": "Wien"
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Wien"
+        },
+        {
+          "@type": "Country",
+          "name": "Österreich"
+        }
+      ],
+      "knowsAbout": [
+        "Branding",
+        "Werbekampagnen",
+        "Webdesign",
+        "Webdevelopment"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Leistungen der Werbeagentur Preminger – P&W",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Branding",
+              "serviceType": "Markenentwicklung und Markenidentität",
+              "provider": {
+                "@id": "https://preminger.at/#agency"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Wien"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kampagnen",
+              "serviceType": "Werbekampagnen und Werbekommunikation",
+              "provider": {
+                "@id": "https://preminger.at/#agency"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Wien"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Webdesign",
+              "serviceType": "Konzeption und Gestaltung von Websites",
+              "provider": {
+                "@id": "https://preminger.at/#agency"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Wien"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Webdevelopment",
+              "serviceType": "Technische Entwicklung von Websites",
+              "provider": {
+                "@id": "https://preminger.at/#agency"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Wien"
+              }
+            }
+          }
+        ]
       },
-      "availableLanguage": [
-        "de",
-        "en"
-      ]
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+43-699-15424355",
+        "email": "p.preminger@preminger.at",
+        "availableLanguage": [
+          "de",
+          "en"
+        ],
+        "contactType": "business inquiries"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://preminger.at/#website",
       "url": "https://preminger.at/",
-      "name": "Preminger – P&W – Werbeagentur Wien",
+      "name": "Preminger – P&W | Werbeagentur Wien",
       "inLanguage": "de-AT",
       "publisher": {
         "@id": "https://preminger.at/#agency"
@@ -63,6 +153,7 @@
   ]
 }
 </script>
+
 
 
   <link rel="preconnect" href="https://fonts.bunny.net">
